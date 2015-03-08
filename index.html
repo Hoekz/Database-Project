@@ -2,12 +2,24 @@
 <html>
 <head>
     <title>Open Book</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body ng-app="app">
-<div id="navbar">This is the navigation bar</div>
-<ng-view></ng-view>
+<div id="navbar" ng-controller="navbar">
+    <div>
+        <a href="#/"><img src="img/home.png" width="30px" height="30px"></a>
+        <span>Search<form ng-submit="search.submit()"><input type="text" ng-model="search.text"></form></span>
+        <a ng-href="#/{{user.signedIn ? 'user/' + user.username : 'sign-in'}}"><button>{{user.signedIn ? user.username : "Sign-in"}}</button></a>
+        <button ng-show="user.signedIn">Upload Content</button>
+    </div>
+</div>
+<ng-view id="ng-view"></ng-view>
 <script src="angular/angular.min.js"></script>
 <script src="angular/angular.route.min.js"></script>
 <script src="app.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/search.js"></script>
+<script src="js/newuser.js"></script>
+<script src="js/sign-in.js"></script>
 </body>
 </html>

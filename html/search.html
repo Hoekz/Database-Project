@@ -1,1 +1,12 @@
-<div>This is search.</div>
+<h1 ng-show="search.hasResults">{{search.results.length}} results for '{{search.text}}'</h1>
+<div class="center">
+    <div class="result" ng-repeat="r in search.results">
+        <div class="left">
+            <div>{{r.title}}</div>
+            <div class="author">by {{r.author}}</div>
+        </div>
+        <div class="right"><button><img src="img/download.png" width="32px" height="32px"></button></div>
+        <div class="right big" ng-class="{worse: r.score <= 75, worst: r.score < 60}"><b>{{r.score}}</b></div>
+    </div>
+    <img ng-hide="search.hasResults" src="img/loading.gif">
+</div>

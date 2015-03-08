@@ -1,1 +1,13 @@
-<div>This is home.</div>
+<h1>Welcome {{user.signedIn ? user.first + ' ' + user.last : 'to'}}</h1>
+<div class="center"><img src="img/logo.png"></div>
+<div class="center" ng-hide="user.signedIn">
+    <a href="#/newUser"><button>Join Now!</button></a>
+    <a href="#/sign-in"><button>Sign-in</button></a>
+</div>
+<div class = "center" ng-show="user.signedIn">
+    <button style="width: 200px">Upload Content</button>
+</div>
+<h2>What is Open Book?</h2>
+<div>Open Book is a website dedicated to helping the students of Missouri S&T. Have notes or old assignments?
+     Upload them for others to earn credits! Use credits to download material for classes you need help in.
+    <a href="#/help">Click here to learn more.</a></div>
