@@ -1,5 +1,5 @@
-<h1 ng-show="search.hasResults">{{search.results.length}} results for '{{search.text}}'</h1>
-<div class="center">
+<h1 ng-show="search.hasResults">{{search.results.length}} results for {{search.class}} in {{search.dept}}</h1>
+<div class="center fill" ng-show="search.class">
     <div class="result" ng-repeat="r in search.results">
         <div class="left">
             <div>{{r.title}}</div>
@@ -9,4 +9,10 @@
         <div class="right big" ng-class="{worse: r.score <= 75, worst: r.score < 60}"><b>{{r.score}}</b></div>
     </div>
     <img ng-hide="search.hasResults" src="img/loading.gif">
+</div>
+<h1>{{search.class ? 'Other ' : ''}}Classes in {{search.dept}}</h1>
+<div class="center fill">
+    <button class="class" ng-repeat="c in search.classes" ng-click="search.goTo(c.CID)">
+        <div>{{c.CID}}</div>
+    </button>
 </div>

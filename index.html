@@ -8,18 +8,21 @@
 <div id="navbar" ng-controller="navbar">
     <div>
         <a href="#/"><img src="img/home.png" width="30px" height="30px"></a>
-        <span>Search<form ng-submit="search.submit()"><input type="text" ng-model="search.text"></form></span>
-        <a ng-href="#/{{user.signedIn ? 'user/' + user.username : 'sign-in'}}"><button>{{user.signedIn ? user.username : "Sign-in"}}</button></a>
-        <button ng-show="user.signedIn">Upload Content</button>
+        <span>Search<select ng-model="search.text" ng-options="value.dname for value in search.opts" ng-change="search.submit()"></select></span>
+        <button ng-click="action.me()">{{user.username ? user.username : "Sign-in"}}</button>
+        <button ng-show="user.username" ng-click="action.signOut()">Sign-out</button>
+        <a href="#/upload"><button ng-show="user.username">Upload Content</button></a>
     </div>
 </div>
 <ng-view id="ng-view"></ng-view>
-<script src="angular/angular.min.js" type="javascript"></script>
-<script src="angular/angular.route.min.js" type="javascript"></script>
-<script src="app.js" type="javascript"></script>
-<script src="js/navbar.js" type="javascript"></script>
-<script src="js/search.js" type="javascript"></script>
-<script src="js/newuser.js" type="javascript"></script>
-<script src="js/sign-in.js" type="javascript"></script>
+<script src="angular/angular.min.js"></script>
+<script src="angular/angular.route.min.js"></script>
+<script src="app.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/search.js"></script>
+<script src="js/newuser.js"></script>
+<script src="js/sign-in.js"></script>
+<script src="js/user.js"></script>
+<script src="js/upload.js"></script>
 </body>
 </html>

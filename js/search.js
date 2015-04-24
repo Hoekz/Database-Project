@@ -1,18 +1,23 @@
-app.controller('search', ['$scope', '$user', '$routeParams', '$timeout', function($scope, $user, $params, $timeout){
+app.controller('search', ['$scope', '$fetch', '$routeParams', '$location', function($scope, $fetch, $params, $loc){
     $scope.search = {
-        text: $params.search,
+        dept: $params.dept,
+        class: $params.class,
         results: [],
-        hasResults: false
+        hasResults: false,
+        classes: [],
+        goTo: function(c){
+            $loc.path('/search/' + $scope.search.dept + '/' + c);
+        }
     };
-    var fNames = ['John','Emily','Fred','Sarah','Vicki','Andrew','Matthew'];
-    var lNames = ['Smith','Johnson','Brown','Goodall','Wilson','Dickens'];
-    $timeout(function(){
-        for(var i = 0; i < Math.random() * 100; i++)
-            $scope.search.results.push({
-                title: 'Search result ' + i,
-                author: fNames[Math.floor(Math.random() * 7)] + ' ' + lNames[Math.floor(Math.random() * 6)],
-                score: Math.round(Math.random() * 100)
-            });
-        $scope.search.hasResults = true;
-    }, Math.random() * 5000);
+
+    $fetch.getClasses($scope.search.dept, function(data){
+        $scope.search.classes = data;
+    });
+
+    if($scope.search.class){
+        $fetch.query($scope.search.class, function(data){
+            $scope.results = data;
+        });
+    }
+
 }]);

@@ -1,11 +1,11 @@
-<h1>Welcome {{user.signedIn ? user.first + ' ' + user.last : 'to'}}</h1>
-<div class="center"><img src="img/logo.png"></div>
-<div class="center" ng-hide="user.signedIn">
+<h1>Welcome {{user.username ? user.first_name + ' ' + user.last_name : 'to'}}</h1>
+<div class="center fill"><img src="img/logo.png"></div>
+<div class="center fill" ng-hide="user.username">
     <a href="#/newUser"><button>Join Now!</button></a>
     <a href="#/sign-in"><button>Sign-in</button></a>
 </div>
-<div class = "center" ng-show="user.signedIn">
-    <button style="width: 200px">Upload Content</button>
+<div class = "center fill" ng-show="user.username">
+    <a href="#/upload"><button style="width: 200px">Upload Content</button></a>
 </div>
 <h2>What is Open Book?</h2>
 <div>Open Book is a website dedicated to helping the students of Missouri S&T. Have notes or old assignments?

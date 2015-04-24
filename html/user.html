@@ -1,0 +1,19 @@
+<div class="left">
+<h1>{{display.user.first_name + ' ' + display.user.last_name}}</h1>
+<h3>{{display.user.username}}</h3>
+<a href="mailto:{{display.user.email}}?subject=OpenBook"><div>Contact: {{display.user.email}}</div></a>
+<h3>{{display.user.age + ' years old'}}</h3>
+</div>
+<div class="right">
+    <div id="tokens">{{display.user.tokens}}</div>
+</div>
+<div id="uploads" class="left fill">
+    <div class="result" ng-repeat="r in display.user.uploads">
+        <div class="left">
+            <div>{{r.title}}</div>
+        </div>
+        <div class="right"><button><img src="img/download.png" width="32px" height="32px"></button></div>
+        <div class="right big" ng-class="{worse: r.score <= 75, worst: r.score < 60}"><b>{{r.score}}</b></div>
+    </div>
+    <div ng-hide="display.user.uploads.length"><i>This user has no uploads</i></div>
+</div>

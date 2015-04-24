@@ -4,27 +4,22 @@ body{
     background: url('img/pattern.png');
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+button{outline: none;}
+button:hover{cursor: pointer;}
 
-button{
-    outline: none;
+a{
+    text-decoration: none;
+    color: darkblue;
+}
+a:hover{
+    color: blue;
 }
 
-.center{
-    width: 100%;
-    text-align: center;
-}
-
-.left{
-    float: left;
-}
-
-.right{
-    float: right;
-}
-
-button:hover{
-    cursor: pointer;
-}
+.fill{width: 100%}
+.center{text-align: center;}
+.float{padding: 100%; right: 0; left: 0; position: relative;}
+.left{float: left;}
+.right{float: right;}
 
 #navbar{
     z-index: 999;
@@ -38,14 +33,12 @@ button:hover{
     -moz-box-shadow: 0 3px 20px 0 rgba(0,0,0,0.6);
     box-shadow: 0 3px 20px 0 rgba(0,0,0,0.6);
 }
-
 #navbar div{
     max-width: 900px;
     left: 0;
     right: 0;
     margin: 0 auto;
 }
-
 #navbar div span{
      background: #008800;
      width: 270px;
@@ -56,13 +49,11 @@ button:hover{
      color: white;
      border-radius: 16px;
  }
-
 #navbar div img{
     float: left;
     padding: 3px;
     margin-right: 10px;
 }
-
 #navbar div button{
     float: right;
     font-size: 20px;
@@ -72,24 +63,17 @@ button:hover{
     border: none;
     background: inherit;
 }
-
 #navbar div button:hover{
     border-radius: 16px;
     background: #008800;
 }
-
-#navbar div span form{
-    float: right;
-    padding: 0;
-    margin: 0;
-}
-
-#navbar div span form input{
+#navbar div span select{
     float: right;
     text-align: center;
     font-size: 14px;
     padding-left: 15px;
     border-radius: 10px;
+    margin-top: 2px;
 }
 
 #ng-view{
@@ -106,7 +90,6 @@ button:hover{
     height: 100%;
     padding: 16px;
 }
-
 #ng-view button{
     margin: 10px;
     width: 120px;
@@ -125,7 +108,6 @@ button:hover{
     width: 45%;
     float: left;
 }
-
 .result div{
     font-size: 20px;
     margin-left: 3px;
@@ -133,52 +115,53 @@ button:hover{
     text-align: left;
     max-width: 250px;
 }
-
 .result div div{
     height: 25px;
     overflow: hidden;
 }
-
 .result div .author{
     font-size: 16px;
 }
-
 .result button{
     margin-top: 3px !important;
     width: 40px !important;
     border-radius: 10px !important;
     padding: 4px 0 0 0;
 }
-
 .result .big{
     font-size: 30px;
     color: #00aa00;
     margin-top: 8px;
 }
 
-.worse{
-    color: #ccbb00 !important;
+.class{
+    border-radius: 10px;
+    background: linear-gradient(#00aa00, #00a000, #008800);
 }
 
-.worst{
-    color: #cc0000 !important;
-}
+.worse{color: #ccbb00 !important;}
+.worst{color: #cc0000 !important;}
 
-#new-user{
-    padding: 20px;
-}
-
-#new-user div{
+#new-user, #sign-in{padding: 20px;}
+#new-user div, #sign-in div{
     margin: 10px;
     width: 400px;
     height: 25px;
 }
-
-#new-user div label{
+#new-user div label, #sign-in div label{
     min-width: 150px;
     float: left;
 }
+#new-user div input, #sign-in div input{float: right;}
 
-#new-user div input{
-    float: right;
+#tokens{
+    margin: 25px 25px 0 0;
+    border: 3px solid #006600;
+    color: #006600;
+    background: white;
+    border-radius: 10px;
+    height: 54px;
+    padding: 0 25px;
+    font-size: 48px;
+    text-align: center;
 }

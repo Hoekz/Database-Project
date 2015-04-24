@@ -1,6 +1,11 @@
-app.controller('login', ['$scope', '$user', '$location', function($scope, $user, $location){
-    $scope.user = $user;
+app.controller('login', ['$scope', '$fetch', '$location', function($scope, $fetch, $loc){
+    $scope.user = {
+        login: function(){
+            $fetch.login($scope.user.name);
+        },
+        name: ''
+    };
     $scope.$on('loggedIn', function(){
-        $location.path('/');
+        $loc.path('/');
     });
 }]);

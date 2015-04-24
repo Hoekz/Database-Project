@@ -1,13 +1,24 @@
-app.controller('newUser', ['$scope', function($scope){
+app.controller('newUser', ['$scope', '$fetch', '$location', function($scope, $fetch, $loc){
     $scope.user = {
-        fname: '',
-        lname: '',
+        first_name: '',
+        last_name: '',
         email: '',
         username: '',
-        pass: '',
+        password: '',
+        DOB: '',
+        tokens: 0
+
+    };
+    $scope.submit = {
         passCheck: '',
         create: function(){
-            console.log($scope.user);
+            if($scope.user.password == $scope.submit.passCheck)
+                $fetch.createUser($scope.user, [], [], function(){
+                    $fetch.login($scope.user.username);
+                    $loc.path('/');
+                });
+            else
+                alert('Passwords do not match.');
         }
     };
 }]);

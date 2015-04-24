@@ -1,10 +1,11 @@
 <h1>New User</h1>
 <form id="new-user">
-    <div><label for="fname">First Name</label><input type="text" id="fname" ng-model="user.fname"></div>
-    <div><label for="lname">Last Name</label><input type="text" id="lname" ng-model="user.lname"></div>
+    <div><label for="fname">First Name</label><input type="text" id="fname" ng-model="user.first_name"></div>
+    <div><label for="lname">Last Name</label><input type="text" id="lname" ng-model="user.last_name"></div>
     <div><label for="email">Email</label><input type="text" id="email" ng-model="user.email"></div>
+    <div><label for="DOB">Birth date</label><input type="date" id="DOB" ng-model="user.DOB"></div>
     <div><label for="username">Username</label><input type="text" id="username" ng-model="user.username"></div>
-    <div><label for="password">Password</label><input type="password" id="password" ng-model="user.pass"></div>
-    <div><label for="password-check">Confirm Password</label><input type="password" id="password-check" ng-model="user.passCheck"></div>
-    <div><button style="width: 200px" ng-click="user.create()">Create Account</button></div>
+    <div><label for="password">Password</label><input type="password" id="password" ng-model="user.password"></div>
+    <div><label for="password-check">Confirm Password</label><input type="password" id="password-check" ng-model="submit.passCheck"></div>
+    <div><button style="width: 200px" ng-click="submit.create()">Create Account</button></div>
 </form>
