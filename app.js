@@ -30,15 +30,28 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider, $locat
             controller: 'upload',
             templateUrl: 'html/upload.html'
         })
+        .when('/document/:DID', {
+            controller: "document",
+            templateUrl: "html/doc.html"
+        })
         .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(!1);
 }]);
 
-app.factory('$fetch', ['$http', '$rootScope', function($http, $root){
+app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root, $loc){
     var self = this;
     var base = 'http://localhost:3000/api';
+    //var base = 'http://10.106.23.224:3000/api';
+
+    var URLify = function(params){
+        var str = "";
+        for(var prop in params)
+            str += prop + "=" + encodeURIComponent(params[prop]) + "&";
+        return str.substr(0, str.length - 1);
+    };
 
     self.classes = {};
+    self.teachers = {};
 
     self.userInfo = function(callback){
         if(!localStorage.username){
@@ -75,6 +88,12 @@ app.factory('$fetch', ['$http', '$rootScope', function($http, $root){
         });
     };
 
+    self.getUploads = function(username, callback){
+        $http.get(base + '/students/' + username + '/documents').success(function(data){
+            callback(data.result);
+        });
+    };
+
     self.createUser = function(student, majors, minors, callback){
         $http.post(base + '/students', {
             student: student,
@@ -105,19 +124,61 @@ app.factory('$fetch', ['$http', '$rootScope', function($http, $root){
         }
     };
 
-    self.query = function(str, callback){
-        callback([]);
+    self.getTeachers = function(name, callback){
+        if(self.teachers[name]){
+            callback(self.teachers[name]);
+        }else{
+            $http.get(base + '/classes/' + name + '/teachers').success(function(data){
+                self.teachers[name] = data.result;
+                callback(data.result);
+            });
+        }
+    };
+
+    self.query = function(params, callback){
+        $http.get(base + '/documents?' + URLify(params)).success(function(data){
+            callback(data.result);
+        });
     };
 
     self.upload = function(form, callback){
-        $http.post(base + '/document', new FormData(form), {
+        $http.post(base + '/documents', new FormData(form), {
             headers: {'Content-Type': undefined},
             transformRequest: angular.identity
-        }).success(callback);
+        }).success(function(data){
+            if(data == "success")
+                $http.put(base + '/students/' + localStorage.username, {updates:{tokens: self.user.tokens += 3}});
+            callback(data);
+        });
     };
 
     self.download = function(did, callback){
+        if(self.user.tokens){
+            window.open(base + '/documents/' + did + '/download');
+            $http.put(base + '/students/' + localStorage.username, {updates:{tokens: self.user.tokens -= 1}});
+        }
+    };
 
+    self.getDoc = function(did, callback){
+        $http.get(base + '/documents/' + did).success(function(data){
+            callback(data.result[0]);
+        });
+    };
+
+    self.getComments = function(did, callback){
+        $http.get(base + '/documents/' + did + '/comments').success(function(data){
+            callback(data.result);
+        });
+    };
+
+    self.updateDoc = function(did, updates){
+        console.log(updates);
+        $http.put(base + '/documents/' + did, {updates: updates});
+    };
+
+    self.postComment = function(did, comment, callback){
+        console.log(comment);
+        $http.post(base + '/documents/'+ did + '/comments', comment).success(callback);
     };
 
     return self;

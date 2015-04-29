@@ -1,8 +1,25 @@
 <div>
-    <div>Upload file here. (pdf only)</div>
-    <form ng-submit="file.upload($event)">
-        <input type="file" id="file">
-        <input type="text" placeholder="Teacher" id="teacher">
+    <h1>Upload a New Document (PDFs only)</h1>
+    <form ng-submit="file.upload($event)" id="upload">
+        <div><input type="file" name="file"/></div>
+        <div><label>Title</label><input type="text" name="name" placeholder="Document Title"/></div>
+        <div><label>Department</label><select ng-model="file.dept" 
+                               ng-options="value.dname for value in file.departments track by value.abbreviation" 
+                               name="dept" 
+                               ng-change="file.getClasses()"></select></div>
+        <div ng-show="file.dept"><label>Class</label><select ng-model="file.class" 
+                                              ng-options="c.CID for c in file.classes track by c.CID"
+                                              name="CID"
+                                              ng-change="file.getTeachers()"></select></div>
+        <div ng-show="file.class"><label>Teacher</label><select ng-model="file.teacher" 
+                                                 ng-options="t.teacher_name for t in file.teachers track by t.teacher_name" 
+                                                 name="teacher_name"></select></div>
+        <div><label>Semester</label><select ng-model="file.season"
+                     ng-options="s for s in file.seasons track  by s" 
+                     name="season"></select></div>
+        <div><label>Year</label><input type="text" name="year" placeholder="year"/></div>
+        <div><label>Grade</label><input type="number" name="grade" placeholder="grade"></div>
+        <input type="text" name="username" style="visibility: hidden; display: none;" ng-model="file.username">
         <button>Submit</button>
     </form>
 </div>

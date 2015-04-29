@@ -7,6 +7,13 @@ body{
 button{outline: none;}
 button:hover{cursor: pointer;}
 
+textarea{
+    resize: none;
+    width: 75%;
+    height: 100px;
+    float: left;
+}
+
 a{
     text-decoration: none;
     color: darkblue;
@@ -14,12 +21,6 @@ a{
 a:hover{
     color: blue;
 }
-
-.fill{width: 100%}
-.center{text-align: center;}
-.float{padding: 100%; right: 0; left: 0; position: relative;}
-.left{float: left;}
-.right{float: right;}
 
 #navbar{
     z-index: 999;
@@ -76,6 +77,11 @@ a:hover{
     margin-top: 2px;
 }
 
+
+#vote-up, #vote-down{margin: 0 0 30px 0 !important;}
+#vote-up{border-radius: 10px 0 0 10px}
+#vote-down{border-radius: 0 10px 10px 0}
+
 #ng-view{
     position: fixed;
     width: 900px;
@@ -122,7 +128,7 @@ a:hover{
 .result div .author{
     font-size: 16px;
 }
-.result button{
+.result button, .download{
     margin-top: 3px !important;
     width: 40px !important;
     border-radius: 10px !important;
@@ -134,6 +140,9 @@ a:hover{
     margin-top: 8px;
 }
 
+#upload div{margin: 10px;}
+#upload div input, #upload div select{width: 200px}
+#upload div label{width: 100px; display: inline-block;}
 .class{
     border-radius: 10px;
     background: linear-gradient(#00aa00, #00a000, #008800);
@@ -154,6 +163,15 @@ a:hover{
 }
 #new-user div input, #sign-in div input{float: right;}
 
+.comment{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 75%;
+    padding: 10px;
+    min-height: 50px;
+    margin: 10px;
+}
+
 #tokens{
     margin: 25px 25px 0 0;
     border: 3px solid #006600;
@@ -165,3 +183,9 @@ a:hover{
     font-size: 48px;
     text-align: center;
 }
+
+.fill{width: 100%;}
+.center{text-align: center;}
+.float{padding: 100%; right: 0; left: 0; position: relative;}
+.left{float: left;}
+.right{float: right;}

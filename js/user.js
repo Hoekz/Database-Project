@@ -1,5 +1,5 @@
 app.controller('display.user', ['$scope', '$fetch', '$routeParams', function($scope, $fetch, $params){
-    $scope.display = {};
+    $scope.display = {user: {}};
 
     $fetch.getUser($params.user, function(data){
         $scope.display.user = data;
@@ -11,6 +11,9 @@ app.controller('display.user', ['$scope', '$fetch', '$routeParams', function($sc
             age--;
         }
         $scope.display.user.age = age;
-    });
 
+        $fetch.getUploads($params.user, function(data){
+            $scope.display.user.uploads = data;
+        });
+    });
 }]);

@@ -9,11 +9,12 @@
 </div>
 <div id="uploads" class="left fill">
     <div class="result" ng-repeat="r in display.user.uploads">
-        <div class="left">
-            <div>{{r.title}}</div>
+        <a href="#/document/{{r.DID}}"><div class="left">
+            <div>{{r.name}}</div>
+            <a href="#/user/{{r.username}}"><div class="author">by {{r.username}}</div></a>
         </div>
-        <div class="right"><button><img src="img/download.png" width="32px" height="32px"></button></div>
-        <div class="right big" ng-class="{worse: r.score <= 75, worst: r.score < 60}"><b>{{r.score}}</b></div>
-    </div>
+        <div class="right"><button ng-click="search.download(r.DID)"><img src="img/download.png" width="32px" height="32px"></button></div>
+        <div class="right big" ng-class="{worse: r.votes <= 5, worst: r.votes < 0}"><b>{{r.votes}}</b></div>
+    </a></div>
     <div ng-hide="display.user.uploads.length"><i>This user has no uploads</i></div>
 </div>

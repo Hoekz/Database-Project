@@ -1,18 +1,28 @@
-<h1 ng-show="search.hasResults">{{search.results.length}} results for {{search.class}} in {{search.dept}}</h1>
-<div class="center fill" ng-show="search.class">
-    <div class="result" ng-repeat="r in search.results">
-        <div class="left">
-            <div>{{r.title}}</div>
-            <div class="author">by {{r.author}}</div>
-        </div>
-        <div class="right"><button><img src="img/download.png" width="32px" height="32px"></button></div>
-        <div class="right big" ng-class="{worse: r.score <= 75, worst: r.score < 60}"><b>{{r.score}}</b></div>
-    </div>
-    <img ng-hide="search.hasResults" src="img/loading.gif">
-</div>
-<h1>{{search.class ? 'Other ' : ''}}Classes in {{search.dept}}</h1>
-<div class="center fill">
+<div class="center fill" style="height: 160px">
+    <h1>{{search.class ? 'Other ' : ''}}Classes in {{search.dept}}</h1>
     <button class="class" ng-repeat="c in search.classes" ng-click="search.goTo(c.CID)">
         <div>{{c.CID}}</div>
     </button>
+</div>
+<div class="center fill" ng-show="search.class">
+    <h1 ng-show="search.hasResults">{{search.results.length}} result{{search.results.length==1?'':'s'}} for {{search.class}} in {{search.dept}}</h1>
+    <div class="center fill">
+        <label>Semester</label><select ng-model="search.season"
+                                       ng-options="s for s in search.seasons track  by s"
+                                       ng-change="search.query()"></select>
+        <label>Year</label><input type="text" ng-change="search.query()" ng-model="search.year">
+        <label>Teacher</label><select ng-model="search.teacher"
+                                      ng-options="t.teacher_name for t in search.teachers track by t.teacher_name"
+                                      ng-change="search.query()"></select></div>
+    </div>
+    <div class="result" ng-repeat="r in search.results">
+        <a href="#/document/{{r.DID}}"><div class="left">
+            <div>{{r.name}} - {{r.grade}}%</div>
+            <a href="#/user/{{r.username}}"><div class="author">by {{r.username}}</div></a>
+        </div>
+            <div class="right"><button ng-click="search.download(r.DID)"><img src="img/download.png" width="32px" height="32px"></button></div>
+            <div class="right big" ng-class="{worse: r.votes <= 5, worst: r.votes < 0}"><b>{{r.votes}}</b></div>
+        </a>
+    </div>
+    <img ng-hide="search.hasResults" src="img/loading.gif">
 </div>

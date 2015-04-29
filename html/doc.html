@@ -1,0 +1,22 @@
+<div class="left">
+<h1>{{doc.name}} - {{doc.grade}}%</h1>
+<button class="download" ng-click="doc.download(r.DID)"><img src="img/download.png" width="32px" height="32px"></button>
+<button ng-click="doc.vote(1)" id="vote-up">Vote UP</button>
+<button ng-click="doc.vote(-1)" id="vote-down">Vote Down</button>
+</div>
+<div class="right"><div id="tokens">{{doc.votes}}</div></div>
+<div class="fill center left">
+    <hr>
+    <textarea ng-model="doc.comment" placeholder="Comment on this document..."></textarea>
+    <label>Anonymous</label><input type="checkbox" ng-model="doc.anon">
+    <button ng-click="doc.postComment()" class="left">Comment</button>
+</div>
+<div class="center fill left">
+    <hr>
+    <div ng-repeat="c in doc.comments" class="comment">
+        <div class="right">{{c.time_stamp}}</div>
+        <div class="left"><b><i>{{c.anonymous ? 'Anonymous' : c.username}}</i></b></div>
+        <br><br>
+        <div class="left content">{{c.content}}</div>
+    </div>
+</div>
