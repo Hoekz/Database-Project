@@ -1,4 +1,4 @@
-app.controller('document', ['$scope', '$fetch', '$routeParams', function($scope, $fetch, $params){
+app.controller('document', ['$scope', '$fetch', '$routeParams', '$location', function($scope, $fetch, $params, $loc){
     $scope.doc = {};
 
     $scope.username = localStorage.username;
@@ -23,6 +23,9 @@ app.controller('document', ['$scope', '$fetch', '$routeParams', function($scope,
         };
         $scope.doc.vote = function(delta){
             $fetch.updateDoc($params.DID, {votes: $scope.doc.votes += delta});
+        };
+        $scope.doc.delDoc = function(){
+            $fetch.delDoc($params.DID, function(){$loc.path('/')});
         };
         $fetch.getComments($params.DID, function(data){
             $scope.doc.comments = data.reverse();

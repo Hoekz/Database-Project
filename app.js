@@ -176,6 +176,10 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
         $http.put(base + '/documents/' + did, {updates: updates});
     };
 
+    self.delDoc = function(did, callback){
+        $http.delete(base + '/documents/' + did).success(callback);
+    };
+    
     self.postComment = function(did, comment, callback){
         console.log(comment);
         $http.post(base + '/documents/'+ did + '/comments', comment).success(callback);
