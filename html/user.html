@@ -2,6 +2,9 @@
 <h1>{{display.user.first_name + ' ' + display.user.last_name}}</h1>
 <h3>{{display.user.username}}</h3>
 <a href="mailto:{{display.user.email}}?subject=OpenBook"><div>Contact: {{display.user.email}}</div></a>
+<div><div class="left">Majors: </div><div ng-repeat="m in display.user.majors" class="left">{{m}}, </div></div>
+<br>
+<div><div class="left">Minors: </div><div ng-repeat="m in display.user.minors" class="left">{{m}}, </div></div>
 <h3>{{display.user.age + ' years old'}}</h3>
 </div>
 <div class="right">

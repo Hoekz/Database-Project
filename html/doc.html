@@ -1,6 +1,6 @@
 <div class="left">
 <h1>{{doc.name}} - {{doc.grade}}%</h1>
-<button class="download" ng-click="doc.download(r.DID)"><img src="img/download.png" width="32px" height="32px"></button>
+<button class="download" ng-click="doc.download(doc.DID)"><img src="img/download.png" width="32px" height="32px"></button>
 <button ng-click="doc.vote(1)" id="vote-up">Vote UP</button>
 <button ng-click="doc.vote(-1)" id="vote-down">Vote Down</button>
 <button ng-click="doc.delDoc()" ng-show="username">Delete</button>

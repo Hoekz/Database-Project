@@ -15,7 +15,7 @@
                                       ng-options="t.teacher_name for t in search.teachers track by t.teacher_name"
                                       ng-change="search.query()"></select></div>
     </div>
-    <div class="result" ng-repeat="r in search.results">
+    <div class="result" ng-repeat="r in search.results | orderBy : '-votes'">
         <a href="#/document/{{r.DID}}"><div class="left">
             <div>{{r.name}} - {{r.grade}}%</div>
             <a href="#/user/{{r.username}}"><div class="author">by {{r.username}}</div></a>

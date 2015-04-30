@@ -21,6 +21,7 @@ app.controller('document', ['$scope', '$fetch', '$routeParams', '$location', fun
                 });
             });
         };
+        $scope.doc.download = $fetch.download;
         $scope.doc.vote = function(delta){
             $fetch.updateDoc($params.DID, {votes: $scope.doc.votes += delta});
         };

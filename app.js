@@ -80,6 +80,7 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
         localStorage.username = "";
         self.user = {username: ""};
         $root.$broadcast('loggedIn');
+        $loc.path('/');
     };
 
     self.getUser = function(username, callback){
@@ -146,13 +147,14 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
             headers: {'Content-Type': undefined},
             transformRequest: angular.identity
         }).success(function(data){
-            if(data == "success")
+            if(data == "success"){
                 $http.put(base + '/students/' + localStorage.username, {updates:{tokens: self.user.tokens += 3}});
+            }
             callback(data);
         });
     };
 
-    self.download = function(did, callback){
+    self.download = function(did){
         if(self.user.tokens){
             window.open(base + '/documents/' + did + '/download');
             $http.put(base + '/students/' + localStorage.username, {updates:{tokens: self.user.tokens -= 1}});

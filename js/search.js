@@ -5,9 +5,7 @@ app.controller('search', ['$scope', '$fetch', '$routeParams', '$location', funct
         results: [],
         hasResults: false,
         classes: [],
-        download: function(did){
-            $fetch.download(did, function(){});
-        },
+        download: $fetch.download,
         goTo: function(c){
             $loc.path('/search/' + $scope.search.dept + '/' + c);
         },
