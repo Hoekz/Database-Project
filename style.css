@@ -134,7 +134,7 @@ a:hover{
     border-radius: 10px !important;
     padding: 4px 0 0 0;
 }
-.result .big{
+.result .big, .big{
     font-size: 30px;
     color: #00aa00;
     margin-top: 8px;

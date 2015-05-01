@@ -12,6 +12,7 @@
         <button ng-click="action.me()">{{user.username ? user.username : "Sign-in"}}</button>
         <button ng-show="user.username" ng-click="action.signOut()">Sign-out</button>
         <a href="#/upload"><button ng-show="user.username">Upload Content</button></a>
+        <a href="#/rankings"><button>Rankings</button></a>
     </div>
 </div>
 <ng-view id="ng-view"></ng-view>
@@ -25,5 +26,6 @@
 <script src="js/user.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/document.js"></script>
+<script src="js/stats.js"></script>
 </body>
 </html>

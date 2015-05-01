@@ -1,0 +1,6 @@
+<div class="full center">
+    <div ng-repeat="s in stats | orderBy: '-votes'">
+        <div class="big" ng-class="{worse: s.votes <= 10, worst: s.votes < 0}">{{s.username}}: {{s.votes}}</div>
+        <hr>
+    </div>
+</div>

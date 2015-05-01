@@ -6,7 +6,6 @@ app.controller('document', ['$scope', '$fetch', '$routeParams', '$location', fun
     $fetch.getDoc($params.DID, function(data){
         $scope.doc = data;
         $scope.doc.anon = false;
-        console.log($scope.doc);
         $scope.doc.postComment = function(){
             $fetch.postComment($params.DID, {
                 comment: {

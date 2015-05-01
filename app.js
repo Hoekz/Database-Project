@@ -34,6 +34,10 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider, $locat
             controller: "document",
             templateUrl: "html/doc.html"
         })
+        .when('/rankings', {
+            controller: "stats",
+            templateUrl: "html/stats.html"
+        })
         .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(!1);
 }]);
@@ -174,7 +178,6 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
     };
 
     self.updateDoc = function(did, updates){
-        console.log(updates);
         $http.put(base + '/documents/' + did, {updates: updates});
     };
 
@@ -185,6 +188,12 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
     self.postComment = function(did, comment, callback){
         console.log(comment);
         $http.post(base + '/documents/'+ did + '/comments', comment).success(callback);
+    };
+
+    self.getStats = function(callback){
+        $http.get(base + '/stats/votes').success(function(data){
+            callback(data.result);
+        });
     };
 
     return self;
