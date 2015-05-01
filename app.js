@@ -87,6 +87,10 @@ app.factory('$fetch', ['$http', '$rootScope', '$location', function($http, $root
         $loc.path('/');
     };
 
+    self.delUser = function(){
+        $http.delete(base + '/students/' + self.user.username).success(self.signOut);
+    };
+    
     self.getUser = function(username, callback){
         $http.get(base + '/students/' + username).success(function(data){
             callback(data.result[0]);
