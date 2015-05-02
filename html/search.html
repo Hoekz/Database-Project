@@ -1,4 +1,4 @@
-<div class="center fill" style="height: 160px">
+<div class="center fill">
     <h1>{{search.class ? 'Other ' : ''}}Classes in {{search.dept}}</h1>
     <button class="class" ng-repeat="c in search.classes" ng-click="search.goTo(c.CID)">
         <div>{{c.CID}}</div>

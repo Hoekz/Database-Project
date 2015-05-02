@@ -5,9 +5,7 @@ app.controller('newUser', ['$scope', '$fetch', '$location', function($scope, $fe
         email: '',
         username: '',
         password: '',
-        DOB: '',
-        tokens: 0
-
+        DOB: ''
     };
     $scope.submit = {
         passCheck: '',
